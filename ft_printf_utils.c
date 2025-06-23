@@ -12,35 +12,36 @@
 
 #include "ft_printf.h"
 
-int print_char(int c)
+int	print_char(int c)
 {
-    write(1, &c, 1);
-    return (1);
+	write(1, &c, 1);
+	return (1);
 }
 
-int print_str(char *str)
+int	print_str(char *str)
 {
-    ft_putstr_fd(str, 1);
-    return ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
 
-int print_int(int num)
+int	print_int(int num)
 {
-    ft_putnbr_fd(num, 1);
-    return ft_strlen(ft_itoa(num));
+	ft_putnbr_fd(num, 1);
+	return (ft_strlen(ft_itoa(num)));
 }
 
-int print_percent(void)
+int	print_percent(void)
 {
-    write(1, "%", 1);
-    return (1);
+	write(1, "%", 1);
+	return (1);
 }
 
-void put_uint(unsigned int num)
+void	put_uint(unsigned int num)
 {
-    char    n;
-    if (num >= 10)
-        put_uint(num / 10);
-    n = num % 10 + '0';
-    write(1, &n, 1);
+	char	n;
+
+	if (num >= 10)
+		put_uint(num / 10);
+	n = num % 10 + '0';
+	write(1, &n, 1);
 }
