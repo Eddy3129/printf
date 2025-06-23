@@ -3,11 +3,11 @@
 
 int main(void)
 {
-    int i;
+    unsigned int i;
     char *s;
 
-    s = "fucking";
-    i = ft_printf("Hello to the %s %d %% world\n", s, 99);
-    printf("%d\n", i);
+    s = "42KL";
+    i = 4294967295;
+    printf("%X",i);
     return (0);
 }
