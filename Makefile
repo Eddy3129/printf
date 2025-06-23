@@ -8,20 +8,14 @@ AR = ar rcs
 RM = rm -f
 
 # Directories
-SRCDIR = src
-INCDIR = include
 LIBFTDIR = libft
-OBJDIR = obj
 
-# Source files
-SRCFILES = ft_printf.c
-SRCS = $(addprefix $(SRCDIR)/, $(SRCFILES))
-
-# Object files
-OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+# Source files (directly in root)
+SRCS = ft_printf.c ft_printf_utils.c
+OBJS = $(SRCS:.c=.o)
 
 # Include paths
-INCLUDES = -I$(INCDIR) -I$(LIBFTDIR)
+INCLUDES = -I. -I$(LIBFTDIR)
 
 # Libft
 LIBFT = $(LIBFTDIR)/libft.a
@@ -29,12 +23,8 @@ LIBFT = $(LIBFTDIR)/libft.a
 # Default target
 all: $(NAME)
 
-# Create object directory
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
 # Compile object files
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Build libft
@@ -48,7 +38,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 # Clean object files
 clean:
-	$(RM) -r $(OBJDIR)
+	$(RM) $(OBJS)
 	$(MAKE) -C $(LIBFTDIR) clean
 
 # Clean everything

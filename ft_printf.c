@@ -12,39 +12,6 @@
 
 #include "ft_printf.h"
 
-int print_char(int c)
-{
-    write(1, &c, 1);
-    return (1);
-}
-
-int print_str(char *str)
-{
-    ft_putstr_fd(str, 1);
-    return ft_strlen(str);
-}
-
-int print_int(int num)
-{
-    ft_putnbr_fd(num, 1);
-    return ft_strlen(ft_itoa(num));
-}
-
-int print_percent(void)
-{
-    write(1, "%", 1);
-    return (1);
-}
-
-static void put_uint(unsigned int num)
-{
-    char    n;
-    if (num >= 10)
-        put_uint(num / 10);
-    n = num % 10 + '0';
-    write(1, &n, 1);
-}
-
 int print_uint(unsigned int num)
 {
     int count;
@@ -63,10 +30,10 @@ int print_uint(unsigned int num)
     return (count);
 }
 
-static size_t print_hex_format(unsigned int num, char format)
+int print_hex_format(unsigned int num, char format)
 {
     char *s;
-    size_t count;
+    int count;
 
     count = 0;
     if (format == 'X')
@@ -79,9 +46,9 @@ static size_t print_hex_format(unsigned int num, char format)
     return (count + 1);
 }
 
-size_t print_ptr(void *ptr)
+int print_ptr(void *ptr)
 {
-    size_t count;
+    int count;
     unsigned long long addr;
     unsigned long long temp;
 
@@ -89,7 +56,7 @@ size_t print_ptr(void *ptr)
         return (write(1, "(nil)", 5));
     addr = (unsigned long long)ptr;
     write(1, "0x", 2);
-    print_hex(addr);
+    print_hex_format(addr, 'x');
     count = 2;
     temp = addr;
     if (temp == 0)
