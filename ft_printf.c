@@ -30,7 +30,7 @@ int	print_uint(unsigned int num)
 	return (count);
 }
 
-int	print_hex_format(unsigned int num, char format)
+int	print_hex_format(unsigned long num, char format)
 {
 	char	*s;
 	int		count;
@@ -49,12 +49,12 @@ int	print_hex_format(unsigned int num, char format)
 int	print_ptr(void *ptr)
 {
 	int					count;
-	unsigned long long	addr;
-	unsigned long long	temp;
+	unsigned long		addr;
+	unsigned long		temp;
 
 	if (ptr == NULL)
 		return (write(1, "(nil)", 5));
-	addr = (unsigned long long)ptr;
+	addr = (unsigned long)ptr;
 	write(1, "0x", 2);
 	print_hex_format(addr, 'x');
 	count = 2;

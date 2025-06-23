@@ -25,7 +25,7 @@ void	put_uint(unsigned int num);
 int		print_uint(unsigned int num);
 int		print_percent(void);
 int		print_ptr(void *ptr);
-int		print_hex_format(unsigned int num, char format);
+int		print_hex_format(unsigned long num, char format);
 int		ft_formats(va_list args, const char format);
 
 #endif

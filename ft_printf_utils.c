@@ -20,14 +20,22 @@ int	print_char(int c)
 
 int	print_str(char *str)
 {
+	if (str == NULL)
+		return (write(1, "(null)", 6));
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
 
 int	print_int(int num)
 {
+	char	*str;
+	int		len;
+
 	ft_putnbr_fd(num, 1);
-	return (ft_strlen(ft_itoa(num)));
+	str = ft_itoa(num);
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }
 
 int	print_percent(void)
